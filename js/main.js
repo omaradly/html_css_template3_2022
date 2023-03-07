@@ -1,5 +1,7 @@
 // put the end date
-let countDown = new Date("Dec 31 2022 23:59:59").getTime();
+let countDown = new Date(
+  `Dec 31 ${new Date().getFullYear()} 23:59:59`
+).getTime();
 let counter = setInterval(() => {
   // put date now
   let dateNow = new Date().getTime();
@@ -40,13 +42,13 @@ function startCount(el) {
   let goal = el.dataset.goal;
   let count = setInterval(() => {
     el.textContent++;
-    if ((el.textContent == goal)) {
+    if (el.textContent == goal) {
       clearInterval(count);
     }
   }, 2000 / goal);
 }
 window.onscroll = function () {
-// animation on scroll to skills
+  // animation on scroll to skills
   if (window.scrollY >= skillsSection.offsetTop - 250) {
     spans.forEach((span) => {
       span.style.width = span.dataset.progress;
@@ -54,10 +56,11 @@ window.onscroll = function () {
   }
   // increase number for stats section for once
   if (window.scrollY >= statsSection.offsetTop) {
-    if(!startFlag){
-    nums.forEach((num) => {
-      startCount(num);
-    });}
-    startFlag=true;
+    if (!startFlag) {
+      nums.forEach((num) => {
+        startCount(num);
+      });
+    }
+    startFlag = true;
   }
 };
